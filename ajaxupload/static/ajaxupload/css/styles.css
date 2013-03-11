@@ -1,0 +1,33 @@
+.ajaxupload {
+  width: 50%;
+}
+
+.ajaxupload .progress {
+  background: #333;
+}
+
+.ajaxupload img {
+  width: 100%;
+}
+
+/* states */
+
+.ajaxupload .progress,
+.ajaxupload a,
+.ajaxupload input,
+.ajaxupload img {
+  display: none;
+}
+
+.ajaxupload.img-active img,
+.ajaxupload.img-active a {
+  display: block;
+}
+
+.ajaxupload.form-active input {
+  display: block;
+}
+
+.ajaxupload.progress-active .progress {
+  display: block;
+}

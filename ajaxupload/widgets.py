@@ -5,12 +5,16 @@ from django.utils import simplejson as json
 from django.conf import settings
 
 
-INIT_JS = """
-<script>
-  $(function(){
-    initUpload('%s', %s)
-  })
-</script>
+HTML = """
+<div class="ajaxupload" data-url="%s">
+    <img src="%s">
+    <a href="#remove">Remove image</a>
+    <input type="hidden" value="%s" id="%s" name="%s" />
+    <input type="file" class="fileinput" />
+    <div class="progress progress-striped active">
+        <div class="bar"></div>
+    </div>
+</div>
 """
 
 
@@ -18,15 +22,15 @@ class AjaxUploadEditor(widgets.TextInput):
 
     class Media:
         js = (
-            'fileupload/js/jquery.ui.widget.js',
-            'fileupload/js/jquery.iframe-transport.js',
-            'fileupload/js/jquery.fileupload.js',
-            'fileupload/js/ajaxupload.js',
+            'ajaxupload/js/jquery.ui.widget.js',
+            'ajaxupload/js/jquery.iframe-transport.js',
+            'ajaxupload/js/jquery.fileupload.js',
+            'ajaxupload/js/ajaxupload.js',
         )
         css = {
             'all': (
-                'fileupload/css/bootstrap-progress.min.css',
-                'fileupload/css/styles.css',
+                'ajaxupload/css/bootstrap-progress.min.css',
+                'ajaxupload/css/styles.css',
             )
         }
 
@@ -34,14 +38,11 @@ class AjaxUploadEditor(widgets.TextInput):
         self.upload_to = kwargs.pop('upload_to', '')
         super(AjaxUploadEditor, self).__init__(*args, **kwargs)
 
-    def get_options(self):
-        return json.dumps({
-            'url': reverse('ajaxupload', kwargs={'upload_to': self.upload_to}),
-        })
 
     def render(self, name, value, attrs=None):
-        html = super(AjaxUploadEditor, self).render(name, value, attrs)
         final_attrs = self.build_attrs(attrs)
         id_ = final_attrs.get('id')
-        html += INIT_JS % (id_, self.get_options())
-        return mark_safe(html)
+        upload_url = reverse('ajaxupload', kwargs={'upload_to': self.upload_to})
+        img_url = value if value else ''
+        output = HTML % (upload_url, img_url, img_url, id_, name)
+        return mark_safe(output)
