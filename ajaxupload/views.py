@@ -1,4 +1,4 @@
-import os, md5, json
+import os, hashlib, json
 
 from django.conf import settings
 from django.utils.encoding import smart_str
@@ -22,7 +22,7 @@ def ajaxupload(request, upload_to=None, form_class=ImageForm, response=lambda na
     if form.is_valid():
         file_ = form.cleaned_data['file']
         file_name, extension = os.path.splitext(file_.name)
-        m = md5.new(smart_str(file_name))
+        m = hashlib.md5(smart_str(file_name))
         hashed_name = '{0}{1}'.format(m.hexdigest(), extension)
         file_path = default_storage.save(os.path.join(upload_to or UPLOAD_PATH, hashed_name), file_)
         url = os.path.join(settings.MEDIA_URL, file_path)
