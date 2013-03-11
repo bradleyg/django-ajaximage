@@ -8,7 +8,7 @@ from django.conf import settings
 HTML = """
 <div class="ajaxupload" data-url="%s">
     <img src="%s">
-    <a class="link"></a>
+    <a class="link" href="%s" target="_blank">%s</a>
     <a class="remove" href="#remove">Remove</a>
     <input type="hidden" value="%s" id="%s" name="%s" />
     <input type="file" class="fileinput" />
@@ -45,5 +45,5 @@ class AjaxUploadEditor(widgets.TextInput):
         id_ = final_attrs.get('id')
         upload_url = reverse('ajaxupload', kwargs={'upload_to': self.upload_to})
         img_url = value if value else ''
-        output = HTML % (upload_url, img_url, img_url, id_, name)
+        output = HTML % (upload_url, img_url, img_url, img_url, img_url, id_, name)
         return mark_safe(output)
