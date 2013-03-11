@@ -16,7 +16,7 @@ UPLOAD_PATH = getattr(settings, 'AJAX_UPLOAD', 'ajax_upload/')
 @csrf_exempt
 @require_POST
 @user_passes_test(lambda u: u.is_staff)
-def ajax_upload(request, upload_to=None, form_class=ImageForm, response=lambda name, url: url):
+def ajaxupload(request, upload_to=None, form_class=ImageForm, response=lambda name, url: url):
     form = form_class(request.POST, request.FILES)
     if form.is_valid():
         file_ = form.cleaned_data['file']

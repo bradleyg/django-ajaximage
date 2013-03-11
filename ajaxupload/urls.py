@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import url, patterns
 
-from ajaxupload.views import ajax_upload
+from ajaxupload.views import ajaxupload
 from ajaxupload.forms import ImageForm
 
 
