@@ -5,6 +5,7 @@ $(function(){
     $fileInput.fileupload({
       url: upload_url,
       formData: {},
+      dataType: 'json',
       paramName: 'file',
       add: function(e, data){
         $(el).attr('class', 'ajaxupload progress-active')
@@ -15,9 +16,9 @@ $(function(){
         $(el).find('.bar').css({width: progress + '%'})
       },
       done: function(e, data){
-        $(el).find('img').attr('src', data.result)
+        $(el).find('img').attr('src', data.result.url)
         $(el).attr('class', 'ajaxupload img-active')
-        $(el).find('input[type=hidden]').val(data.result)
+        $(el).find('input[type=hidden]').val(data.result.url)
         $(el).find('.bar').css({width: '0%'})
       }
     })
