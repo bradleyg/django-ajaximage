@@ -5,9 +5,6 @@ from django.utils import simplejson as json
 from django.conf import settings
 
 
-GLOBAL_OPTIONS = getattr(settings, 'AJAX_UPLOAD', {})
-
-
 INIT_JS = """
 <script>
   $(function(){
@@ -34,16 +31,12 @@ class AjaxEditor(widgets.TextInput):
 
     def __init__(self, *args, **kwargs):
         self.upload_to = kwargs.pop('upload_to', '')
-        self.custom_options = kwargs.pop('ajax_options', {})
         super(AjaxEditor, self).__init__(*args, **kwargs)
 
     def get_options(self):
-        options = GLOBAL_OPTIONS.copy()
-        options.update(self.custom_options)
-        options.update({
-            'url': reverse('ajax_upload_image', kwargs={'upload_to': self.upload_to}),
+        return json.dumps({
+            'url': reverse('ajaxupload', kwargs={'upload_to': self.upload_to}),
         })
-        return json.dumps(options)
 
     def render(self, name, value, attrs=None):
         html = super(AjaxEditor, self).render(name, value, attrs)

@@ -5,8 +5,8 @@ from ajaxupload.forms import ImageForm
 
 
 urlpatterns = patterns('',
-    url('^upload/image/(?P<upload_to>.*)', ajax_upload, {
+    url('^upload/(?P<upload_to>.*)', ajaxupload, {
         'form_class': ImageForm,
         'response': lambda name, url: url,
-    }, name='ajax_upload_image'),
+    }, name='ajaxupload'),
 )
