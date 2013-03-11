@@ -10,7 +10,14 @@ Add ajax upload functionality with a progress bar to file input fields within Dj
 # settings.py
 AJAXUPLOAD = 'uploads/' # (optional, default is 'ajaxupload/')
 ```
-
+  
+```python
+# urls.py
+urlpatterns = patterns('',
+    url(r'^ajaxupload/', include('ajaxupload.urls')),
+)
+```
+  
 ```python
 # models.py
 from django.db import models
