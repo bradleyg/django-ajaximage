@@ -14,7 +14,7 @@ INIT_JS = """
 """
 
 
-class AjaxEditor(widgets.TextInput):
+class AjaxUploadEditor(widgets.TextInput):
 
     class Media:
         js = (
@@ -31,7 +31,7 @@ class AjaxEditor(widgets.TextInput):
 
     def __init__(self, *args, **kwargs):
         self.upload_to = kwargs.pop('upload_to', '')
-        super(AjaxEditor, self).__init__(*args, **kwargs)
+        super(AjaxUploadEditor, self).__init__(*args, **kwargs)
 
     def get_options(self):
         return json.dumps({
@@ -39,7 +39,7 @@ class AjaxEditor(widgets.TextInput):
         })
 
     def render(self, name, value, attrs=None):
-        html = super(AjaxEditor, self).render(name, value, attrs)
+        html = super(AjaxUploadEditor, self).render(name, value, attrs)
         final_attrs = self.build_attrs(attrs)
         id_ = final_attrs.get('id')
         html += INIT_JS % (id_, self.get_options())

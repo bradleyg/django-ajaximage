@@ -1,14 +1,14 @@
 #-*- coding: utf-8 -*-
 from django.db.models import Field
 from django.forms import widgets
-from ajaxupload.widgets import AjaxEditor
+from ajaxupload.widgets import AjaxUploadEditor
 
 
-class AjaxField(Field):
+class AjaxUploadField(Field):
     def __init__(self, *args, **kwargs):
         upload_to = kwargs.pop('upload_to', '')
-        self.widget = AjaxEditor(upload_to=upload_to)
-        super(AjaxField, self).__init__(*args, **kwargs)
+        self.widget = AjaxUploadEditor(upload_to=upload_to)
+        super(AjaxUploadField, self).__init__(*args, **kwargs)
 
     def get_internal_type(self):
         return "TextField"
@@ -16,4 +16,4 @@ class AjaxField(Field):
     def formfield(self, **kwargs):
         defaults = {'widget': self.widget}
         defaults.update(kwargs)
-        return super(AjaxField, self).formfield(**defaults)
+        return super(AjaxUploadField, self).formfield(**defaults)

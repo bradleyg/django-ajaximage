@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 from ajaxupload.forms import ImageForm
 
 
-UPLOAD_PATH = getattr(settings, 'AJAX_UPLOAD', 'ajax_upload/')
+UPLOAD_PATH = getattr(settings, 'AJAXUPLOAD', 'ajaxupload/')
 
 
 @csrf_exempt
