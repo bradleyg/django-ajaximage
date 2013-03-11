@@ -1,6 +1,6 @@
 .ajaxupload {
   width: 50%;
-  float: left;
+  display: inline-block;
 }
 
 .ajaxupload .progress {
@@ -21,11 +21,16 @@
 }
 
 .ajaxupload.img-active img,
-.ajaxupload.img-active a {
+.ajaxupload.img-active .remove {
   display: block;
 }
 
 .ajaxupload.form-active input {
+  display: block;
+}
+
+.ajaxupload.link-active .link,
+.ajaxupload.link-active .remove {
   display: block;
 }
 

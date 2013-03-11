@@ -8,7 +8,8 @@ from django.conf import settings
 HTML = """
 <div class="ajaxupload" data-url="%s">
     <img src="%s">
-    <a href="#remove">Remove image</a>
+    <a class="link"></a>
+    <a class="remove" href="#remove">Remove</a>
     <input type="hidden" value="%s" id="%s" name="%s" />
     <input type="file" class="fileinput" />
     <div class="progress progress-striped active">
