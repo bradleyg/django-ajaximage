@@ -25,6 +25,7 @@ class AjaxUploadEditor(widgets.TextInput):
         )
         css = {
             'all': (
+                'fileupload/css/bootstrap-progress.min.css'
                 'fileupload/css/styles.css',
             )
         }
