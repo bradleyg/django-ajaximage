@@ -1,5 +1,6 @@
 .ajaxupload {
   width: 50%;
+  float: left;
 }
 
 .ajaxupload .progress {
