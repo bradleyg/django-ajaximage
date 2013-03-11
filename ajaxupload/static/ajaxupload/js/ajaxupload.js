@@ -41,28 +41,39 @@ $(function(){
       }
     })
   }
-
-  $('.ajaxupload').each(function(i, el){
+  
+  var setup = function(el){
     var upload_url = $(el).data('url')
     var img_url = $(el).find('input[type=hidden]').val()
     var $fileInput = $(el).find('input[type=file]')
-
-    var classs = (img_url === '') ? 'form-active' : 'link-active'
-
+    
+    var class_ = (img_url === '') ? 'form-active' : 'link-active'
+    
     var regex = /jpg|jpeg|png|gif/i
     var ext = img_url.split('.').pop()
     
-    if(regex.test(ext)) classs = 'img-active'
-
-    $(el).attr('class', 'ajaxupload ' + classs)
-
+    if(regex.test(ext)) class_ = 'img-active'
+    
+    $(el).attr('class', 'ajaxupload ' + class_)
+    
     $(el).find('.remove').click(function(e){
       e.preventDefault()
       $(el).find('input[type=hidden]').val('')
       $(el).attr('class', 'ajaxupload form-active')
     })
-
+    
     attach($fileInput, upload_url, el)
+  }
+
+  $('.ajaxupload').each(function(i, el){
+    setup(el)
+  })
+  
+  $(document).bind('DOMNodeInserted', function(e) {
+    var el = $(e.target).find('.ajaxupload').get(0)
+    var yes = $(el).length !== 0
+    if(yes) setup(el)
   })
 
 })
+
