@@ -10,6 +10,14 @@ $(function(){
 
       add: function(e, data){
         $(el).attr('class', 'ajaxupload progress-active')
+        
+        var regex = /jpg|jpeg|png|gif/i
+        
+        if( ! regex.test(data.files[0].type)){
+          $(el).attr('class', 'ajaxupload form-active')
+          return alert('Incorrect image format. Allowed (jpg, gif, png).')
+        }
+        
         data.submit()
       },
 
@@ -24,20 +32,9 @@ $(function(){
       },
 
       done: function(e, data){
-
-        var type = data.result.file_type
-
-        if(type === 'image'){
-          $(el).find('.img-link').attr('href', data.result.url)
-          $(el).find('img').attr('src', data.result.url)
-          $(el).attr('class', 'ajaxupload img-active')
-        }
-        else {
-          var file_name = data.result.url.replace(/^.*[\\\/]/, '')
-          $(el).find('.link').attr('href', data.result.url).text(file_name)
-          $(el).attr('class', 'ajaxupload link-active')
-        }
-
+        $(el).find('.link').attr('href', data.result.url)
+        $(el).find('img').attr('src', data.result.url)
+        $(el).attr('class', 'ajaxupload img-active')
         $(el).find('input[type=hidden]').val(data.result.url)
         $(el).find('.bar').css({width: '0%'})
       }
@@ -49,13 +46,7 @@ $(function(){
     var img_url = $(el).find('input[type=hidden]').val()
     var $fileInput = $(el).find('input[type=file]')
     
-    var class_ = (img_url === '') ? 'form-active' : 'link-active'
-    
-    var regex = /jpg|jpeg|png|gif/i
-    var ext = img_url.split('.').pop()
-    
-    if(regex.test(ext)) class_ = 'img-active'
-    
+    var class_ = (img_url === '') ? 'form-active' : 'img-active'
     $(el).attr('class', 'ajaxupload ' + class_)
     
     $(el).find('.remove').click(function(e){

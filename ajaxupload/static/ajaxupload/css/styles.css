@@ -16,16 +16,16 @@
   margin-bottom: 3px;
 }
 
-.ajaxupload a.img-link:hover img {
+.ajaxupload a.link:hover img {
   opacity: 0.8;
 }
 
 /* inactive */
 
 .ajaxupload .progress,
-.ajaxupload a,
-.ajaxupload input,
-.ajaxupload img {
+.ajaxupload .link,
+.ajaxupload .remove,
+.ajaxupload input {
   display: none;
 }
 
@@ -35,8 +35,7 @@
 }
 
 /* active image */
-.ajaxupload.img-active img,
-.ajaxupload.img-active .img-link {
+.ajaxupload.img-active .link {
   display: block;
 }
 
@@ -46,11 +45,5 @@
 
 /* active form */
 .ajaxupload.form-active input {
-  display: block;
-}
-
-/* active link */
-.ajaxupload.link-active .link,
-.ajaxupload.link-active .remove {
   display: block;
 }
