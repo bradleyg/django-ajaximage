@@ -37,13 +37,22 @@ class AjaxUploadEditor(widgets.TextInput):
 
     def __init__(self, *args, **kwargs):
         self.upload_to = kwargs.pop('upload_to', '')
+        self.max_width = kwargs.pop('max_width', '')
+        self.max_height = kwargs.pop('max_height', '')
+        self.crop = kwargs.pop('crop', '')
         super(AjaxUploadEditor, self).__init__(*args, **kwargs)
 
 
     def render(self, name, value, attrs=None):
         final_attrs = self.build_attrs(attrs)
         id_ = final_attrs.get('id')
-        upload_url = reverse('ajaxupload', kwargs={'upload_to': self.upload_to})
+        
+        kwargs = {'upload_to': self.upload_to,
+                  'max_width': self.max_width,
+                  'max_height': self.max_height,
+                  'crop': self.crop}
+        
+        upload_url = reverse('ajaxupload', kwargs=kwargs)
         img_url = value if value else ''
         output = HTML % (upload_url, img_url, img_url, img_url, img_url, id_, name)
         return mark_safe(output)

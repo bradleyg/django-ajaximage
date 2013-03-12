@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='django-ajaxupload',
-    version='0.0.5',
+    version='0.0.6',
     description='Ajax upload for images',
     long_description=readme,
     author="Bradley Griffiths",

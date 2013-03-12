@@ -5,7 +5,7 @@ from ajaxupload.forms import FileForm
 
 
 urlpatterns = patterns('',
-    url('^upload/(?P<upload_to>.*)', ajaxupload, {
+    url('^upload/(?P<upload_to>.*)/(?P<max_width>\d+)/(?P<max_height>\d+)/(?P<crop>\d+)', ajaxupload, {
         'form_class': FileForm,
         'response': lambda name, url: url,
     }, name='ajaxupload'),
