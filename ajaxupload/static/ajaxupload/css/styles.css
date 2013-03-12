@@ -8,10 +8,19 @@
 }
 
 .ajaxupload img {
-  width: 100%;
+  width: 200px;
+  background: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-bottom: 3px;
 }
 
-/* states */
+.ajaxupload a.img-link:hover img {
+  opacity: 0.8;
+}
+
+/* inactive */
 
 .ajaxupload .progress,
 .ajaxupload a,
@@ -20,20 +29,28 @@
   display: none;
 }
 
-.ajaxupload.img-active img,
-.ajaxupload.img-active .remove {
+/* active progress */
+.ajaxupload.progress-active .progress {
   display: block;
 }
 
+/* active image */
+.ajaxupload.img-active img,
+.ajaxupload.img-active .img-link {
+  display: block;
+}
+
+.ajaxupload.img-active .remove {
+  display: inline-block;
+}
+
+/* active form */
 .ajaxupload.form-active input {
   display: block;
 }
 
+/* active link */
 .ajaxupload.link-active .link,
 .ajaxupload.link-active .remove {
-  display: block;
-}
-
-.ajaxupload.progress-active .progress {
   display: block;
 }

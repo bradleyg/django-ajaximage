@@ -8,7 +8,7 @@ from django.conf import settings
 
 HTML = """
 <div class="ajaxupload" data-url="{upload_url}">
-    <img src="{file_url}">
+    <a class="img-link" target="_blank" href="{file_url}"><img src="{file_url}"></a>
     <a class="link" href="{file_url}" target="_blank">{file_name}</a>
     <a class="remove" href="#remove">Remove</a>
     <input type="hidden" value="{file_url}" id="{element_id}" name="{name}" />
