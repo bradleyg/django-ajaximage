@@ -1,5 +1,7 @@
 ##Ajax file uploads
-
+  
+<a href="https://github.com/bradleyg/django-ajaxupload">https://github.com/bradleyg/django-ajaxupload</a>  
+  
 Add ajax upload functionality with a progress bar to file input fields within Django admin. Images are optionally resized.
 
 ![screenshot](https://raw.github.com/bradleyg/django-ajaxupload/master/screenshot.png)

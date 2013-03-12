@@ -7,8 +7,8 @@ f.close()
 
 setup(
     name='django-ajaxupload',
-    version='0.0.6',
-    description='Ajax upload for images',
+    version='0.0.7',
+    description='Add ajax upload functionality with a progress bar to file input fields within Django admin. Images are optionally resized.',
     long_description=readme,
     author="Bradley Griffiths",
     author_email='bradley.griffiths@gmail.com',
