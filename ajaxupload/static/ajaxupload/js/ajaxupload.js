@@ -28,6 +28,7 @@ $(function(){
         var type = data.result.file_type
 
         if(type === 'image'){
+          $(el).find('.img-link').attr('href', data.result.url)
           $(el).find('img').attr('src', data.result.url)
           $(el).attr('class', 'ajaxupload img-active')
         }
