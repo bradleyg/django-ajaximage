@@ -1,7 +1,6 @@
-import os, hashlib, json
+import os, json
 
 from django.conf import settings
-from django.utils.encoding import smart_str
 from django.contrib.auth.decorators import user_passes_test
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
@@ -29,9 +28,10 @@ def ajaxupload(request, upload_to=None, max_width=None, max_height=None, crop=No
             file_ = resize(file_, max_width, max_height, crop)
                         
         file_name, extension = os.path.splitext(file_.name)
-        m = hashlib.md5(smart_str(file_name))
-        hashed_name = '{0}{1}'.format(m.hexdigest(), extension)
-        file_path = default_storage.save(os.path.join(upload_to or UPLOAD_PATH, hashed_name), file_)
+        file_name = "".join([c for c in file_name if c.isalpha() or c.isdigit() or c==' ']).rstrip()
+        safe_name = '{0}{1}'.format(file_name, extension)
+        
+        file_path = default_storage.save(os.path.join(upload_to or UPLOAD_PATH, safe_name), file_)
         url = os.path.join(settings.MEDIA_URL, file_path)
         
         return HttpResponse(json.dumps({'url': url, 'file_type': file_type}))

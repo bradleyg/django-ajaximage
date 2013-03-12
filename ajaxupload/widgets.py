@@ -1,3 +1,4 @@
+import os
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
@@ -6,11 +7,11 @@ from django.conf import settings
 
 
 HTML = """
-<div class="ajaxupload" data-url="%s">
-    <img src="%s">
-    <a class="link" href="%s" target="_blank">%s</a>
+<div class="ajaxupload" data-url="{upload_url}">
+    <img src="{file_url}">
+    <a class="link" href="{file_url}" target="_blank">{file_name}</a>
     <a class="remove" href="#remove">Remove</a>
-    <input type="hidden" value="%s" id="%s" name="%s" />
+    <input type="hidden" value="{file_url}" id="{element_id}" name="{name}" />
     <input type="file" class="fileinput" />
     <div class="progress progress-striped active">
         <div class="bar"></div>
@@ -45,7 +46,7 @@ class AjaxUploadEditor(widgets.TextInput):
 
     def render(self, name, value, attrs=None):
         final_attrs = self.build_attrs(attrs)
-        id_ = final_attrs.get('id')
+        element_id = final_attrs.get('id')
         
         kwargs = {'upload_to': self.upload_to,
                   'max_width': self.max_width,
@@ -53,6 +54,13 @@ class AjaxUploadEditor(widgets.TextInput):
                   'crop': self.crop}
         
         upload_url = reverse('ajaxupload', kwargs=kwargs)
-        img_url = value if value else ''
-        output = HTML % (upload_url, img_url, img_url, img_url, img_url, id_, name)
+        file_url = value if value else ''
+        file_name = os.path.basename(file_url)
+        
+        output = HTML.format(upload_url=upload_url,
+                             file_url=file_url,
+                             file_name=file_name,
+                             element_id=element_id,
+                             name=name)
+        
         return mark_safe(output)

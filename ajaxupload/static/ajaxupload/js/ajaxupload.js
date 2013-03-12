@@ -32,7 +32,8 @@ $(function(){
           $(el).attr('class', 'ajaxupload img-active')
         }
         else {
-          $(el).find('.link').attr('href', data.result.url).text(data.result.url)
+          var file_name = data.result.url.replace(/^.*[\\\/]/, '')
+          $(el).find('.link').attr('href', data.result.url).text(file_name)
           $(el).attr('class', 'ajaxupload link-active')
         }
 
