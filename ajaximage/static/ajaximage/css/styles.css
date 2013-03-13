@@ -1,5 +1,6 @@
 .ajaximage {
   display: inline-block;
+  width: 220px;
 }
 
 .ajaximage .progress {
@@ -9,8 +10,8 @@
 .ajaximage img {
   width: 200px;
   background: #fff;
-  padding: 7px;
-  border-radius: 5px;
+  padding: 9px;
+  display: block;
   border: 1px solid #ddd;
   margin-bottom: 3px;
 }
