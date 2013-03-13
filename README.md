@@ -1,33 +1,35 @@
 ##Ajax file uploads
   
-<a href="https://github.com/bradleyg/django-ajaxupload">https://github.com/bradleyg/django-ajaxupload</a>  
+[https://github.com/bradleyg/django-ajaximage](https://github.com/bradleyg/django-ajaximage)
   
-Add ajax upload functionality with a progress bar to file input fields within Django admin. Images are optionally resized.
+Add ajax image upload functionality with a progress bar to file input fields within Django admin. Images are optionally resized.
 
-![screenshot](https://raw.github.com/bradleyg/django-ajaxupload/master/screenshot.png)
+![screenshot](https://raw.github.com/bradleyg/django-ajaximage/master/screenshot.png)
 
-```pip install django-ajaxupload```
+```pip install django-ajaximage```
 
 ```python
 # settings.py
-AJAXUPLOAD = 'uploads/' # (optional, default is 'ajaxupload/')
+AJAXIMAGE_DIR = 'ajaximage/' # (optional, default is 'ajaximage/')
 ```
   
 ```python
 # urls.py
 urlpatterns = patterns('',
-    url(r'^ajaxupload/', include('ajaxupload.urls')),
+    url(r'^ajaximage/', include('ajaximage.urls')),
 )
 ```
   
 ```python
 # models.py
 from django.db import models
-from ajaxupload.fields import AjaxUploadField
+from ajaximage.fields import AjaxImageField
 
 class Example(models.Model):
-    thumbnail = AjaxUploadField(upload_to='thumbnails'
-                                max_height=200, #optional
-                                max_width=200, # optional
-                                crop=True) # optional - if crop is provided both max_height and max_width are required
+    thumbnail = AjaxImageField(upload_to='thumbnails'
+                               max_height=200, #optional
+                               max_width=200, # optional
+                               crop=True) # optional
+                               
+# if crop is provided both max_height and max_width are required
 ```

@@ -1,0 +1,48 @@
+.ajaximage {
+  display: inline-block;
+}
+
+.ajaximage .progress {
+  background: #333;
+}
+
+.ajaximage img {
+  width: 200px;
+  background: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-bottom: 3px;
+}
+
+.ajaximage a.link:hover img {
+  opacity: 0.8;
+}
+
+/* inactive */
+
+.ajaximage .progress,
+.ajaximage .link,
+.ajaximage .remove,
+.ajaximage input {
+  display: none;
+}
+
+/* active progress */
+.ajaximage.progress-active .progress {
+  display: block;
+}
+
+/* active image */
+.ajaximage.img-active .link {
+  display: block;
+}
+
+.ajaximage.img-active .remove {
+  display: inline-block;
+}
+
+/* active form */
+.ajaximage.form-active input {
+  display: block;
+}
