@@ -23,9 +23,6 @@ class AjaxImageEditor(widgets.TextInput):
 
     class Media:
         js = (
-            'ajaximage/js/jquery.ui.widget.js',
-            'ajaximage/js/jquery.iframe-transport.js',
-            'ajaximage/js/jquery.fileupload.js',
             'ajaximage/js/ajaximage.js',
         )
         css = {
