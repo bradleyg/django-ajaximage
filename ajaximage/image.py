@@ -19,7 +19,7 @@ def resize(file_, max_width=0, max_height=0, crop=0):
     size = (max_width, max_height)
     image = Image.open(file_)
     
-    if(str(file_.content_type) == 'image/png'):
+    if(image.mode == 'RGBA'):
         image.load()
         background = Image.new('RGB', image.size, (255, 255, 255))
         background.paste(image, mask=image.split()[3])
