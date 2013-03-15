@@ -1,9 +1,3 @@
-var assetUrl = __admin_media_prefix__.substring(0, __admin_media_prefix__.lastIndexOf('/'))
-
-if( ! jQuery.widget) $.getScript(assetUrl + '/jquery.ui.widget.js')
-if( ! $.ajaxTransport) $.getScript(assetUrl + '/jquery.iframe-transport.js')
-if( ! jQuery().fileupload) $.getScript(assetUrl + '/jquery.fileupload.js')
-
 $(function(){
 
   var attach = function($fileInput, upload_url, el){
@@ -75,4 +69,3 @@ $(function(){
   })
 
 })
-
