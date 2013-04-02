@@ -23,14 +23,14 @@ class AjaxImageEditor(widgets.TextInput):
 
     class Media:
         js = (
-            'ajaximage/js/jquery.iframe-transport.js',
-            'ajaximage/js/jquery.ui.widget.js',
-            'ajaximage/js/jquery.fileupload.js',
+            'shared-bg/js/jquery.iframe-transport.js',
+            'shared-bg/js/jquery.ui.widget.js',
+            'shared-bg/js/jquery.fileupload.js',
             'ajaximage/js/ajaximage.js',
         )
         css = {
             'all': (
-                'ajaximage/css/bootstrap-progress.min.css',
+                'shared-bg/css/bootstrap-progress.min.css',
                 'ajaximage/css/styles.css',
             )
         }
