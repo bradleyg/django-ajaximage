@@ -2,6 +2,7 @@
 from django.db.models import Field
 from django.forms import widgets
 from ajaximage.widgets import AjaxImageEditor
+from django.conf import settings
 
 
 class AjaxImageField(Field):
@@ -29,3 +30,8 @@ class AjaxImageField(Field):
         defaults = {'widget': self.widget}
         defaults.update(kwargs)
         return super(AjaxImageField, self).formfield(**defaults)
+
+
+if 'south' in settings.INSTALLED_APPS:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^ajaximage\.fields\.AjaxImageField"])
