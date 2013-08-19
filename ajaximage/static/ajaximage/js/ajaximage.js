@@ -35,7 +35,7 @@ $(function(){
         $(el).find('.link').attr('href', data.result.url)
         $(el).find('img').attr('src', data.result.url)
         $(el).attr('class', 'ajaximage img-active')
-        $(el).find('input[type=hidden]').val(data.result.url)
+        $(el).find('input[type=hidden]').val(data.result.filename)
         $(el).find('.bar').css({width: '0%'})
       }
     })

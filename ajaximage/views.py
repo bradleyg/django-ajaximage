@@ -11,6 +11,7 @@ from ajaximage.forms import FileForm
 
 
 UPLOAD_PATH = getattr(settings, 'AJAXIMAGE_DIR', 'ajaximage/')
+PREPEND_MEDIA_URL = getattr(settings, 'AJAXIMAGE_PREPEND_MEDIA_URL', True)
 
 
 @csrf_exempt
@@ -33,5 +34,10 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
         file_path = default_storage.save(os.path.join(upload_to or UPLOAD_PATH, safe_name), file_)
         url = os.path.join(settings.MEDIA_URL, file_path)
         
-        return HttpResponse(json.dumps({'url': url}))
+        if PREPEND_MEDIA_URL:
+            filename = url
+        else:
+            filename = file_path
+        
+        return HttpResponse(json.dumps({'url': url, 'filename': filename}))
     return HttpResponse(status=403)
