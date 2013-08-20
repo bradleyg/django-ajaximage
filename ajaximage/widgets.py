@@ -63,4 +63,4 @@ class AjaxImageEditor(widgets.TextInput):
                              element_id=element_id,
                              name=name)
         
-        return mark_safe(output)
+        return mark_safe(unicode(output))
