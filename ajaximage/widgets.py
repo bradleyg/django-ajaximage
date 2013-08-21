@@ -5,12 +5,13 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 from django.conf import settings
 
+PREPEND_MEDIA_URL = getattr(settings, 'AJAXIMAGE_PREPEND_MEDIA_URL', True)
 
 HTML = """
 <div class="ajaximage" data-url="{upload_url}">
     <a class="link" target="_blank" href="{file_url}"><img src="{file_url}"></a>
     <a class="remove" href="#remove">Remove</a>
-    <input type="hidden" value="{file_url}" id="{element_id}" name="{name}" />
+    <input type="hidden" value="{file_path}" id="{element_id}" name="{name}" />
     <input type="file" class="fileinput" />
     <div class="progress progress-striped active">
         <div class="bar"></div>
@@ -43,7 +44,6 @@ class AjaxImageEditor(widgets.TextInput):
         self.crop = kwargs.pop('crop', '')
         super(AjaxImageEditor, self).__init__(*args, **kwargs)
 
-
     def render(self, name, value, attrs=None):
         final_attrs = self.build_attrs(attrs)
         element_id = final_attrs.get('id')
@@ -54,12 +54,18 @@ class AjaxImageEditor(widgets.TextInput):
                   'crop': self.crop}
         
         upload_url = reverse('ajaximage', kwargs=kwargs)
-        file_url = value if value else ''
+        file_path = value if value else ''
+        if PREPEND_MEDIA_URL is False and len(file_path) > 0:
+            file_url = os.path.join(settings.MEDIA_URL, file_path)
+        else:
+            file_url = file_path
+
         file_name = os.path.basename(file_url)
         
         output = HTML.format(upload_url=upload_url,
                              file_url=file_url,
                              file_name=file_name,
+                             file_path=file_path,
                              element_id=element_id,
                              name=name)
         
