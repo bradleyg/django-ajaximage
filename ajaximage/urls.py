@@ -1,4 +1,7 @@
-from django.conf.urls.defaults import url, patterns
+try:# pre 1.6
+    from django.conf.urls.defaults import url, patterns
+except ImportError:
+    from django.conf.urls import url, patterns
 
 from ajaximage.views import ajaximage
 from ajaximage.forms import FileForm
