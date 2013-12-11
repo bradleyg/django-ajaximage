@@ -15,7 +15,7 @@ setup(
     url='https://github.com/bradleyg/django-ajaximage',
     packages=['ajaximage'],
     include_package_data=True,
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'pillow'],
     zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
