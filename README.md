@@ -27,7 +27,7 @@ from django.db import models
 from ajaximage.fields import AjaxImageField
 
 class Example(models.Model):
-    thumbnail = AjaxImageField(upload_to='thumbnails'
+    thumbnail = AjaxImageField(upload_to='thumbnails',
                                max_height=200, #optional
                                max_width=200, # optional
                                crop=True) # optional
