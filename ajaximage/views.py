@@ -21,7 +21,7 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
     form = form_class(request.POST, request.FILES)
     if form.is_valid():
         file_ = form.cleaned_data['file']
-        
+
         image_types = ['image/png', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif']
         if file_.content_type not in image_types:
             return HttpResponse(status=403, content='Bad image format')
@@ -30,10 +30,10 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
         file_name, extension = os.path.splitext(file_.name)
         file_name = "".join([c for c in file_name if c.isalpha() or c.isdigit() or c==' ']).rstrip()
         safe_name = '{0}{1}'.format(file_name, extension)
-        
+
         file_path = default_storage.save(os.path.join(upload_to or UPLOAD_PATH, safe_name), file_)
         url = os.path.join(settings.MEDIA_URL, file_path)
-        
+
         if PREPEND_MEDIA_URL:
             filename = url
         else:

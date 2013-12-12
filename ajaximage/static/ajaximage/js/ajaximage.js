@@ -19,7 +19,7 @@ $ajaxImage(function(){
           $ajaxImage(el).attr('class', 'ajaximage form-active')
           return alert('Incorrect image format. Allowed (jpg, gif, png).')
         }
-        
+
         data.submit()
       },
 
@@ -42,7 +42,7 @@ $ajaxImage(function(){
       }
     })
   }
-  
+
   var setup = function(el){
     var upload_url = $ajaxImage(el).data('url')
     var img_url = $ajaxImage(el).find('input[type=hidden]').val()
@@ -56,14 +56,14 @@ $ajaxImage(function(){
       $ajaxImage(el).find('input[type=hidden]').val('')
       $ajaxImage(el).attr('class', 'ajaximage form-active')
     })
-    
+
     attach($fileInput, upload_url, el)
   }
 
   $ajaxImage('.ajaximage').each(function(i, el){
     setup(el)
   })
-  
+
   $ajaxImage(document).bind('DOMNodeInserted', function(e) {
     var el = $ajaxImage(e.target).find('.ajaximage').get(0)
     var yes = $ajaxImage(el).length !== 0

@@ -61,12 +61,12 @@ class AjaxImageEditor(widgets.TextInput):
             file_url = file_path
 
         file_name = os.path.basename(file_url)
-        
+
         output = HTML.format(upload_url=upload_url,
                              file_url=file_url,
                              file_name=file_name,
                              file_path=file_path,
                              element_id=element_id,
                              name=name)
-        
+
         return mark_safe(unicode(output))
