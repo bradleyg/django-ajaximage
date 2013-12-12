@@ -14,7 +14,7 @@ AJAXIMAGE_DIR = 'ajaximage/' # (optional, default is 'ajaximage/')
 AJAXIMAGE_PREPEND_MEDIA_URL = True # (optional, default is 'True')
 
 INSTALLED_APPS = [
-    # 
+    '...',
     'ajaximage',
 ]
 ```
@@ -40,5 +40,8 @@ class Example(models.Model):
 # if crop is provided both max_height and max_width are required
 ```
 
-Rememeber to call ``collectstatic`` in order to made available the javascript
-files necessary to the admin field.
+You may need to call ``collectstatic`` to make the assets available in your admin area.
+
+```bash
+python manage.py collectstatic
+````
