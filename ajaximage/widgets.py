@@ -2,10 +2,7 @@ import os
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
-from django.utils import simplejson as json
-from django.conf import settings
 
-PREPEND_MEDIA_URL = getattr(settings, 'AJAXIMAGE_PREPEND_MEDIA_URL', True)
 
 HTML = """
 <div class="ajaximage" data-url="{upload_url}">
@@ -55,10 +52,9 @@ class AjaxImageEditor(widgets.TextInput):
         
         upload_url = reverse('ajaximage', kwargs=kwargs)
         file_path = value if value else ''
-        if PREPEND_MEDIA_URL is False and len(file_path) > 0:
-            file_url = os.path.join(settings.MEDIA_URL, file_path)
-        else:
-            file_url = file_path
+
+        # use FieldFile.url - get url using storage backend
+        file_url = value.url if value else ''
 
         file_name = os.path.basename(file_url)
 
