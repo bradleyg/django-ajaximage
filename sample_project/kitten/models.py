@@ -9,4 +9,17 @@ class Kitten(models.Model):
                                crop=False)
 
     def __unicode__(self):
-        return self.thumbnail
+        # Cant return self.thumbnail - must first convert it to str
+        # Either return url/path or str(self.thumbnail)
+        return unicode(self.thumbnail)
+
+    def __str__(self):
+        return str(self.thumbnail)
+
+    @property
+    def url(self):
+        return self.thumbnail.url
+
+    @property
+    def path(self):
+        return self.thumbnail.path
