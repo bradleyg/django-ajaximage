@@ -11,7 +11,6 @@ Add ajax image upload functionality with a progress bar to file input fields wit
 ```python
 # settings.py
 AJAXIMAGE_DIR = 'ajaximage/' # (optional, default is 'ajaximage/')
-AJAXIMAGE_PREPEND_MEDIA_URL = True # (optional, default is 'True')
 
 INSTALLED_APPS = [
     '...',
