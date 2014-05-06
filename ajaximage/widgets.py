@@ -2,6 +2,7 @@ import os
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
+from django.core.files.storage import default_storage
 
 
 HTML = """
@@ -51,10 +52,12 @@ class AjaxImageEditor(widgets.TextInput):
                   'crop': self.crop}
         
         upload_url = reverse('ajaximage', kwargs=kwargs)
-        file_path = value if value else ''
 
-        # use FieldFile.url - get url using storage backend
-        file_url = value.url if value else ''
+        # NB convert to string and do not rely on value.url
+        # value.url fails when rendering form with validation errors because form value is not a FieldFile
+        # Use storage.url and file_path - works with FieldFile instances and string formdata
+        file_path = str(value) if value else ''
+        file_url = default_storage.url(file_path) if value else ''
 
         file_name = os.path.basename(file_url)
 
