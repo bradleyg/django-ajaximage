@@ -29,9 +29,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'sample_project.urls'
+ROOT_URLCONF = 'example.urls'
 
-WSGI_APPLICATION = 'sample_project.wsgi.application'
+WSGI_APPLICATION = 'example.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -54,3 +54,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+
+AJAXIMAGE_DIR = 'ajaximage/'
+AJAXIMAGE_AUTH_TEST = lambda u: True
