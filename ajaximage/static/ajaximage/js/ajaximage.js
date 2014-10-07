@@ -99,7 +99,7 @@
 
         form.append('file', file)
 
-        request('POST', dest, form, headers, el, false, function(status, json){
+        request('POST', dest, form, headers, el, true, function(status, json){
             disableSubmit(false)
 
             var data = parseJson(json)
