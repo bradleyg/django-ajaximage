@@ -7,26 +7,24 @@ f.close()
 
 setup(
     name='django-ajaximage',
-    version='0.1.18',
-    description='Add ajax image upload functionality with a progress bar to file input fields within Django admin. Images are optionally resized.',
+    version='0.2.0',
+    description='Upload images via ajax. Images are optionally resized.',
     long_description=readme,
     author="Bradley Griffiths",
     author_email='bradley.griffiths@gmail.com',
     url='https://github.com/bradleyg/django-ajaximage',
     packages=['ajaximage'],
     include_package_data=True,
-    install_requires=[
-        'Django',
-        'Pillow',
-    ],
+    install_requires=['Django', 'Pillow',],
     zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
     ],
 )
