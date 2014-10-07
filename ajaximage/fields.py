@@ -3,7 +3,7 @@ from django.core.files.storage import default_storage
 from django.db.models.fields.files import FileDescriptor, FieldFile
 from django.db.models import Field
 from django.conf import settings
-from .widgets import AjaxImageEditor
+from .widgets import AjaxImageWidget
 
 
 class AjaxImageField(Field):
@@ -22,7 +22,7 @@ class AjaxImageField(Field):
         if crop is 1 and (max_height is 0 or max_width is 0):
             raise Exception('Both max_width and max_height are needed if cropping')
 
-        self.widget = AjaxImageEditor(
+        self.widget = AjaxImageWidget(
             upload_to=upload_to,
             max_width=max_width,
             max_height=max_height,

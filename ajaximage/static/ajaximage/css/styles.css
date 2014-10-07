@@ -1,49 +1,33 @@
 .ajaximage {
-  display: inline-block;
-  width: 220px;
+  float: left;
 }
 
 .ajaximage .progress {
   background: #333;
+  width: 200px;
 }
 
 .ajaximage img {
   width: 200px;
-  background: #fff;
-  padding: 9px;
+  padding: 5px 0;
   display: block;
-  border: 1px solid #ddd;
   margin-bottom: 3px;
 }
 
-.ajaximage a.link:hover img {
+.ajaximage a.file-link:hover img {
   opacity: 0.8;
 }
 
-/* inactive */
-
 .ajaximage .progress,
-.ajaximage .link,
-.ajaximage .remove,
-.ajaximage input {
+.ajaximage .file-link,
+.ajaximage .file-remove,
+.ajaximage .file-input {
   display: none;
 }
 
-/* active progress */
-.ajaximage.progress-active .progress {
-  display: block;
-}
-
-/* active image */
-.ajaximage.img-active .link {
-  display: block;
-}
-
-.ajaximage.img-active .remove {
-  display: inline-block;
-}
-
-/* active form */
-.ajaximage.form-active input {
+.ajaximage.progress-active .progress,
+.ajaximage.img-active .file-link,
+.ajaximage.img-active .file-remove,
+.ajaximage.form-active .file-input {
   display: block;
 }
