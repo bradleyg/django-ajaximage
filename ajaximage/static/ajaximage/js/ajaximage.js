@@ -95,8 +95,8 @@
             return alert('Incorrect image format. Allowed (jpg, gif, png).')
         }
 
+        el.className = 'ajaximage progress-active'
         disableSubmit(true)
-
         form.append('file', file)
 
         request('POST', dest, form, headers, el, true, function(status, json){
