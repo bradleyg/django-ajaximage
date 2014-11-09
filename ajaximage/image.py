@@ -1,9 +1,6 @@
 import os
 from PIL import Image, ImageOps
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import BytesIO
 
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -29,7 +26,7 @@ def resize(file_, max_width=0, max_height=0, crop=0):
         background.paste(image, mask=image.split()[3])
         image = background
 
-    temp = StringIO()
+    temp = BytesIO()
 
     if(crop is 1):
         image = ImageOps.fit(image, size, Image.ANTIALIAS)
