@@ -38,6 +38,6 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
         path = default_storage.save(name, file_)
         url = default_storage.url(path)
 
-        return HttpResponse(json.dumps({'url': url, 'filename': path}))
+        return HttpResponse(json.dumps({'url': url, 'filename': path}), content_type="application/json")
 
     return HttpResponse(status=403)
