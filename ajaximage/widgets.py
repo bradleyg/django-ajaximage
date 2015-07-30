@@ -1,6 +1,6 @@
 import os
 from django.forms import widgets
-from django.utils.safestring import mark_safe
+from django.utils.safestring import mark_safe, SafeUnicode
 from django.core.urlresolvers import reverse
 from django.core.files.storage import default_storage
 
@@ -60,11 +60,11 @@ class AjaxImageWidget(widgets.TextInput):
 
         file_name = os.path.basename(file_url)
 
-        output = self.html.format(upload_url=upload_url,
+        output = SafeUnicode(self.html.format(upload_url=upload_url,
                              file_url=file_url,
                              file_name=file_name,
                              file_path=file_path,
                              element_id=element_id,
-                             name=name)
+                             name=name))
 
         return mark_safe(output)
