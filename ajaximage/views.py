@@ -4,12 +4,15 @@ from django.conf import settings
 from django.contrib.auth.decorators import user_passes_test
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
-from django.utils.text import slugify
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from .image import resize
 from .forms import FileForm
 
+try:
+    from django.utils.text import slugify
+except:
+    #Django 1.4 support
+    from django.template.defaultfilters import slugify
 
 UPLOAD_PATH = getattr(settings, 'AJAXIMAGE_DIR', 'ajaximage/')
 AUTH_TEST = getattr(settings, 'AJAXIMAGE_AUTH_TEST', lambda u: u.is_staff)
