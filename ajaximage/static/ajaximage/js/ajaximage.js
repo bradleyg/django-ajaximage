@@ -66,6 +66,24 @@
 
         el.className = 'ajaximage img-active'
         el.querySelector('.bar').style.width = '0%'
+
+        var event;
+
+        if (document.createEvent) {
+            event = document.createEvent("HTMLEvents");
+            
+            event.initEvent("ajaximage.updated", true, true);
+            event.eventName = "ajaximage.updated";
+
+            element.dispatchEvent(event);
+        } else {
+            event = document.createEventObject();
+            
+            event.eventType = "ajaximage.updated";
+            event.eventName = "ajaximage.updated";
+
+            element.fireEvent("on" + event.eventType, event);
+        }
     }
 
     var concurrentUploads = 0
