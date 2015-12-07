@@ -72,17 +72,17 @@
         if (document.createEvent) {
             event = document.createEvent("HTMLEvents");
             
-            event.initEvent("ajaximage.updated", true, true);
-            event.eventName = "ajaximage.updated";
+            event.initEvent("updated", true, true);
+            event.eventName = "updated";
 
-            element.dispatchEvent(event);
+            el.dispatchEvent(event);
         } else {
             event = document.createEventObject();
             
-            event.eventType = "ajaximage.updated";
-            event.eventName = "ajaximage.updated";
+            event.eventType = "updated";
+            event.eventName = "updated";
 
-            element.fireEvent("on" + event.eventType, event);
+            el.fireEvent("on" + event.eventType, event);
         }
     }
 
