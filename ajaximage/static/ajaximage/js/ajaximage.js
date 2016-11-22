@@ -1,6 +1,6 @@
 (function(){
 
-    "use strict"
+    // "use strict"
 
     var getCookie = function(name) {
         var value = '; ' + document.cookie,
@@ -157,9 +157,9 @@
         input.addEventListener('change', upload, false)
     }
 
-    document.addEventListener('DOMContentLoaded', function(e) {
+    // document.addEventListener('DOMContentLoaded', function(e) {
         ;[].forEach.call(document.querySelectorAll('.ajaximage'), addHandlers)
-    })
+    // })
 
     document.addEventListener('DOMNodeInserted', function(e){
         if(e.target.tagName) {
