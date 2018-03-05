@@ -4,8 +4,8 @@ django-ajaximage
 Ajax image uploads.
 -------------------------------------
 
-[![PyPi Version](https://pypip.in/v/django-ajaximage/badge.png)](https://crate.io/packages/django-ajaximage)
-[![PyPi Downloads](https://pypip.in/d/django-ajaximage/badge.png)](https://crate.io/packages/django-ajaximage)
+[![PyPi Version](https://img.shields.io/pypi/v/django-ajaximage.svg)](https://crate.io/packages/django-ajaximage)
+[![PyPi Downloads](https://img.shields.io/pypi/dm/django-ajaximage.svg)](https://crate.io/packages/django-ajaximage)
 
 Upload images via ajax. Images are optionally resized.
 
