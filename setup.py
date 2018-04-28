@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='django-ajaximage',
-    version='0.2.8',
+    version='0.2.9',
     description='Upload images via ajax. Images are optionally resized.',
     long_description=readme,
     author="Bradley Griffiths",
@@ -24,7 +24,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
     ],
 )

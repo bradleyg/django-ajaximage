@@ -18,7 +18,7 @@ Chrome / Safari / Firefox / IE10+
 
 Install with Pip:
 
-```pip install https://github.com/sergey-panasenko/django-ajaximage/archive/master.zip```
+```pip install django-ajaximage```
 
 ## Django Setup
 
@@ -103,7 +103,7 @@ class MyView(FormView):
 ## Examples
 Examples of both approaches can be found in the examples folder. To run them:
 ```shell
-$ git clone git@github.com:sergey-panasenko/django-ajaximage.git
+$ git clone git@github.com:bradleyg/django-ajaximage.git
 $ cd django-ajaximage
 $ python setup.py install
 $ cd example
