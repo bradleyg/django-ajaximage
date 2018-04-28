@@ -4,24 +4,21 @@ django-ajaximage
 Ajax image uploads.
 -------------------------------------
 
-[![PyPi Version](https://pypip.in/v/django-ajaximage/badge.png)](https://crate.io/packages/django-ajaximage)
-[![PyPi Downloads](https://pypip.in/d/django-ajaximage/badge.png)](https://crate.io/packages/django-ajaximage)
-
 Upload images via ajax. Images are optionally resized.
 
-![screenshot](https://raw.githubusercontent.com/bradleyg/django-ajaximage/master/screenshot.png)
+![screenshot](/screenshot.png?raw=true)
 
 ## Support
-Python 2/3
+Python 3
+Django > 2.0
 Chrome / Safari / Firefox / IE10+
 
-For older browser support use version 0.1.18.
 
 ## Installation
 
 Install with Pip:
 
-```pip install django-ajaximage```
+```pip install https://github.com/sergey-panasenko/django-ajaximage.git```
 
 ## Django Setup
 
@@ -106,13 +103,14 @@ class MyView(FormView):
 ## Examples
 Examples of both approaches can be found in the examples folder. To run them:
 ```shell
-$ git clone git@github.com:bradleyg/django-ajaximage.git
+$ git clone git@github.com:sergey-panasenko/django-ajaximage.git
 $ cd django-ajaximage
 $ python setup.py install
 $ cd example
 
-$ python manage.py syncdb
-$ python manage.py runserver 0.0.0.0:5000
+$ python manage.py migrate
+$ python manage.py createsuperuser
+$ python manage.py runserver
 ```
 
-Visit ```http://localhost:5000/admin``` to view the admin widget and ```http://localhost:5000/form``` to view the custom form widget.
+Visit ```http://localhost:8000/admin``` to view the admin widget and ```http://localhost:8000/form``` to view the custom form widget.
