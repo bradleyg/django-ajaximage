@@ -18,7 +18,7 @@ Chrome / Safari / Firefox / IE10+
 
 Install with Pip:
 
-```pip install https://github.com/sergey-panasenko/django-ajaximage.git```
+```pip install https://github.com/sergey-panasenko/django-ajaximage/archive/master.zip```
 
 ## Django Setup
 
