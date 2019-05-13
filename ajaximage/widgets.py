@@ -41,7 +41,7 @@ class AjaxImageWidget(widgets.TextInput):
         self.crop = kwargs.pop('crop', 0)
         super(AjaxImageWidget, self).__init__(*args, **kwargs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         final_attrs = self.build_attrs(attrs)
         element_id = final_attrs.get('id')
 
