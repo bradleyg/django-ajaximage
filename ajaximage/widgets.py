@@ -1,8 +1,9 @@
 import os
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.files.storage import default_storage
+from django.utils.translation import gettext as _
 
 
 class AjaxImageWidget(widgets.TextInput):
@@ -12,7 +13,7 @@ class AjaxImageWidget(widgets.TextInput):
         <a class="file-link" target="_blank" href="{file_url}">
             <img class="file-img" src="{file_url}">
         </a>
-        <a class="file-remove" href="#remove">Remove</a>
+        <a class="file-remove" href="#remove">%s</a>
         <input class="file-path" type="hidden" value="{file_path}" id="{element_id}" name="{name}" />
         <input type="file" class="file-input" />
         <input class="file-dest" type="hidden" value="{upload_url}">
@@ -20,7 +21,7 @@ class AjaxImageWidget(widgets.TextInput):
             <div class="bar"></div>
         </div>
     </div>
-    """
+    """ % _(u"Remove")
 
     class Media:
         js = (
@@ -40,7 +41,7 @@ class AjaxImageWidget(widgets.TextInput):
         self.crop = kwargs.pop('crop', 0)
         super(AjaxImageWidget, self).__init__(*args, **kwargs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         final_attrs = self.build_attrs(attrs)
         element_id = final_attrs.get('id')
 
