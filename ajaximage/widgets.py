@@ -45,13 +45,6 @@ class AjaxImageWidget(widgets.TextInput):
         final_attrs = self.build_attrs(attrs)
         element_id = final_attrs.get('id')
 
-        kwargs = {'upload_to': self.upload_to,
-                  'max_width': self.max_width,
-                  'max_height': self.max_height,
-                  'crop': self.crop}
-
-        upload_url = reverse('ajaximage', kwargs=kwargs)
-
         # NB convert to string and do not rely on value.url
         # value.url fails when rendering form with validation errors because
         # form value is not a FieldFile. Use storage.url and file_path - works
@@ -60,6 +53,19 @@ class AjaxImageWidget(widgets.TextInput):
         file_url = default_storage.url(file_path) if value else ''
 
         file_name = os.path.basename(file_url)
+
+        if hasattr(self.upload_to, '__call__'):
+            try:
+                self.upload_to = self.upload_to(value.instance, file_name)
+            except AttributeError:
+                self.upload_to = self.upload_to(None, file_name)
+
+        kwargs = {'upload_to': self.upload_to,
+                  'max_width': self.max_width,
+                  'max_height': self.max_height,
+                  'crop': self.crop}
+
+        upload_url = reverse('ajaximage', kwargs=kwargs)
 
         output = self.html.format(upload_url=upload_url,
                              file_url=file_url,

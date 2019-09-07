@@ -1,10 +1,15 @@
+import random
 from django.db import models
 from ajaximage.fields import AjaxImageField
 
 
+def random_folder(instance, filename):
+    return 'thumbs_{}/{}'.format(random.randint(0, 50), filename)
+
+
 class Kitten(models.Model):
     image = AjaxImageField()
-    thumbnail = AjaxImageField(upload_to='thumbnails', max_height=200,
+    thumbnail = AjaxImageField(upload_to=random_folder, max_height=200,
                                max_width=200, crop=False)
 
     def __str__(self):
