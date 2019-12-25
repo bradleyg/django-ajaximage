@@ -1,11 +1,9 @@
-import os
 from PIL import Image, ImageOps
 try:
     from StringIO import StringIO as IO
 except ImportError:
     from io import BytesIO as IO
 
-from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 
@@ -36,9 +34,13 @@ def resize(file_, max_width=0, max_height=0, crop=0):
     else:
         image.thumbnail(size, Image.ANTIALIAS)
 
-    image.save(temp, 'jpeg')
+    if 'png' in file_.content_type:
+        image.save(temp, 'png')
+    elif 'gif' in file_.content_type:
+        image.save(temp, 'gif')
+    else:
+        image.save(temp, 'jpeg')
+
     temp.seek(0)
 
-    return SimpleUploadedFile(file_.name,
-                              temp.read(),
-                              content_type='image/jpeg')
+    return SimpleUploadedFile(file_.name, temp.read(), content_type=file_.content_type)
