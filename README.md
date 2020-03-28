@@ -6,7 +6,7 @@ Ajax image uploads.
 
 Upload images via ajax. Images are optionally resized.
 
-Optimize on https://github.com/bradleyg/django-ajaximage.
+Optimized on https://github.com/bradleyg/django-ajaximage.
 
 Features Appended:
 
