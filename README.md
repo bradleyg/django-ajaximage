@@ -14,6 +14,14 @@ Features Appended:
 * Support django2 and above
 * `upload_to` support datetime string format
 * Change FileField to ImageFileField to compatible with ImageField
+* Add format_image method to display custom image field using the same format
+    ```
+from ajaximage.utils import format_image
+class xxxAdmin(ModelAdmin):
+    ...
+    def some_field(obj):
+        return format_image(obj.some_field.ajaximagefiled)      
+    ```
 
 ![screenshot](/screenshot.png?raw=true)
 

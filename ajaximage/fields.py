@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import django.contrib.admin.helpers
+from ajaximage.utils import format_image
 from django.contrib.admin.utils import display_for_field
 from django.core.files.storage import default_storage
 from django.db.models import Field
@@ -57,8 +58,7 @@ class AjaxImageField(Field):
 def display_for_field_patch(value, field, empty_value_display):
     if isinstance(field, AjaxImageField) and value:
         width = value.width if value.width < 200 else 200
-        return mark_safe(f"""<a target="_blank" href="{value.url}">
-    <img width="{width}px" src="{value.url}"></a>""")
+        return format_image(value)
     else:
         return display_for_field(value, field, empty_value_display)
 
