@@ -1,15 +1,18 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+import django.contrib.admin.helpers
+from ajaximage.utils import format_image
+from django.contrib.admin.utils import display_for_field
 from django.core.files.storage import default_storage
-from django.db.models.fields.files import FileDescriptor, FieldFile
 from django.db.models import Field
-from django.conf import settings
+from django.db.models.fields.files import FileDescriptor, ImageFieldFile
+from django.utils.safestring import mark_safe
+
 from .widgets import AjaxImageWidget
 
 
 class AjaxImageField(Field):
-
     storage = default_storage
-    attr_class = FieldFile
+    attr_class = ImageFieldFile
     descriptor_class = FileDescriptor
 
     def __init__(self, *args, **kwargs):
@@ -50,6 +53,14 @@ class AjaxImageField(Field):
         return super(AjaxImageField, self).formfield(**defaults)
 
 
-if 'south' in settings.INSTALLED_APPS:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ["^ajaximage\.fields\.AjaxImageField"])
+# Monkey path to rightly display readonly field.
+
+def display_for_field_patch(value, field, empty_value_display):
+    if isinstance(field, AjaxImageField) and value:
+        width = value.width if value.width < 200 else 200
+        return format_image(value)
+    else:
+        return display_for_field(value, field, empty_value_display)
+
+
+django.contrib.admin.helpers.display_for_field = display_for_field_patch

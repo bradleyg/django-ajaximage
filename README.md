@@ -6,6 +6,23 @@ Ajax image uploads.
 
 Upload images via ajax. Images are optionally resized.
 
+Optimized on https://github.com/bradleyg/django-ajaximage.
+
+Features Appended:
+
+* Correctly display the readonly field
+* Support django2 and above
+* `upload_to` support datetime string format
+* Change FileField to ImageFileField to compatible with ImageField
+* Add format_image method to display custom image field using the same format
+    ```
+    from ajaximage.utils import format_image
+    class xxxAdmin(ModelAdmin):
+        ...
+        def some_field(obj):
+            return format_image(obj.some_field.ajaximagefield)      
+    ```
+
 ![screenshot](/screenshot.png?raw=true)
 
 ## Support
@@ -38,9 +55,9 @@ AJAXIMAGE_AUTH_TEST = lambda u: True
 ### urls.py
 
 ```python
-urlpatterns = patterns('',
-    url(r'^ajaximage/', include('ajaximage.urls')),
-)
+urlpatterns += [
+    path('ajaximage/', include('ajaximage.urls')),
+]
 ```
 
 Run ```python manage.py collectstatic``` if required.

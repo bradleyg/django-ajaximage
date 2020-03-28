@@ -6,13 +6,14 @@ readme = f.read()
 f.close()
 
 setup(
-    name='django-ajaximage',
-    version='0.2.9',
-    description='Upload images via ajax. Images are optionally resized.',
+    name='django2-ajaximage',
+    version='0.7.0',
+    description='Upload images via ajax. Images are optionally resized.',    
     long_description=readme,
-    author="Bradley Griffiths",
+    long_description_content_type='text/markdown',
+    author="Bradley Griffiths(Modified by Daimon)",
     author_email='bradley.griffiths@gmail.com',
-    url='https://github.com/bradleyg/django-ajaximage',
+    url='https://github.com/bradleyg/django2-ajaximage',
     packages=['ajaximage'],
     include_package_data=True,
     install_requires=['Django', 'Pillow',],
