@@ -20,7 +20,7 @@ Features Appended:
     class xxxAdmin(ModelAdmin):
         ...
         def some_field(obj):
-            return format_image(obj.some_field.ajaximagefiled)      
+            return format_image(obj.some_field.ajaximagefield)      
     ```
 
 ![screenshot](/screenshot.png?raw=true)
